@@ -1,0 +1,291 @@
+// Mang Hai Chieu_Ma trận(trang 8)
+#include<stdio.h>
+ void NhapMatranVuong( int A[10][10],  int n);
+ void XuatMatranVuong( int A[10][10],  int n);
+ int MinMatran( int A[10][10], int n);
+ int TongPtduongcheochinhMatran( int A[10][10], int n);
+ int MaxduongcheophuMatran( int A[10][10], int n);
+ int MaxCotMT(int A[10][10], int n, int k);
+ int MinDongMT(int A[10][10], int n, int k);
+ void DiemYenNgua(int A[10][10], int n);
+ int main(void)
+ {
+ 	int A[10][10];
+ 	int n,k;
+ 	printf("Hay nhap n: ");
+ 	scanf("%d",&n);
+ 	NhapMatranVuong(A,n);
+ 	XuatMatranVuong(A,n);
+ 	printf("Phan tu nho nhat cua ma tran vuong la: %d", MinMatran(A,n));
+ 	printf("\nTong phan tu tren duong cheo chinh cua ma tran vuong la: %d",TongPtduongcheochinhMatran(A,n));
+    printf("\nMax tren duong cheo phu cua ma tran vuong la: %d",MaxduongcheophuMatran(A,n));
+	DiemYenNgua(A,n);	
+ }
+ 
+ void NhapMatranVuong( int A[10][10], int n)
+ {
+    for(int i=0; i<n; i++)
+	{
+	    for(int j=0; j<n; j++) 
+		{		
+	    printf("Nhap A[%d][%d] = ",i, j);
+	    scanf("%d", &A[i][j]);
+        }
+    }
+}
+ 
+  void XuatMatranVuong( int A[10][10],  int n)
+ {
+ 	printf("\nXuat Ma Tran vuong cap %d :\n", n);
+    for(int i=0; i<n; i++)
+	{
+	
+	    for(int j=0; j<n; j++) 
+		{		
+	    printf("%d ",A[i][j]);
+	    }
+	    printf("\n");
+     }
+}
+int MinMatran( int A[10][10], int n)
+{
+  int Min = A[0][0];
+  for(int i=0; i<n; i++)
+	{
+	    for(int j=0; j<n; j++) 	
+	      if (Min>A[i][j])
+	      Min = A[i][j];
+	      return Min;
+	}  	
+}
+
+int TongPtduongcheochinhMatran( int A[10][10], int n)
+{
+  int sum = 0;
+  for(int i=0; i<n; i++)
+    for(int j=0; j<n; j++)	
+	  if(i == j)
+	  sum = sum +A[i][j];
+	  return sum;  
+}
+int MaxduongcheophuMatran( int A[10][10], int n)
+{
+	int i=0;
+	int Max =A[0][n-1-i];
+  for(int i=0; i<n; i++)
+    for(int j=0; j<n; j++)	
+	  if(A[i][n-1-i]>Max)
+	  Max = A[i][j];
+	  return Max;  
+	
+}
+
+
+//diem yen ngua 
+
+int MaxCotMT(int A[10][10], int n, int k)
+{
+   int MaxYN = A[0][k];
+   for(int i=0; i<n; i++)
+         if(MaxYN < A[i][k])
+           MaxYN = A[i][k];
+           return MaxYN;
+}
+
+int MinDongMT(int A[10][10], int n, int k)
+{
+   int MinD= A[k][0];
+   for(int j=0; j<n; j++)
+         if(MinD> A[k][j])
+           MinD = A[k][j];
+           return MinD;
+}
+
+void DiemYenNgua(int A[10][10], int n)
+{
+	printf("\nDiem Yen Ngua la:\n");
+	for(int i=0; i<n; i++)
+	{
+        for(int j=0; j<n; j++)
+		{
+			
+         if(A[i][j] == MaxCotMT(A,n,j) && A[i][j] == MinDongMT(A,n,i))
+         printf("A[%d][%d] =%d", i, j, A[i][j]);
+        }
+    printf("\n");
+   }
+}
+
+//Bài 6 (trang 2):tính Tam giac ABC
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	float A,B,C,p,hA,hB,hC;
+	float S = 0; 
+	printf("Hay nhap canh A: ");
+	scanf("%f", &A);
+	printf("Hay nhap canh B: ");
+	scanf("%f", &B);
+	printf("Hay nhap canh C: ");
+	scanf("%f", &C);
+	
+	if((A<0) || (B<0) || (C<0) && (A+B)<C && (A+C)<B && (B+C)<A )
+	{
+		printf("Hay nhap lai !! vi ABC khong phai tam giac");
+		return 0;
+	}
+	   
+	if((A+B)>C && (A+C)>B && (B+C)>A)
+	   printf("\nABC la mot tam giac!!\n");
+	         p=(A+B+C)/2; 		  
+	         S=sqrt(p*(p-A)*(p-B)*(p-C));
+	   printf("\nDien Tich tam giac ABC la: %.2f", S);	
+	          hA=2*(S/A);
+			  hB=2*(S/B);
+			  hC=2*(S/C);	    
+	   printf("\nChieu dai cac duong cao trong tam giac ABC: %.2f, %.2f, %.2f", hA, hB, hC);		  
+}
+
+//Mang Mot Chieu(trang 7)
+#include<stdio.h>
+ void NhapMang(float A[100], float n);
+ void XuatMang(float A[100], float n);
+ void soduongMang(float A[100], float n);
+ void SapXepMang(float A[], float n);
+ int main(void)
+ {
+ 	float A[100];
+ 	float n;
+ 	float x;
+ 	float gt=1;
+ 	printf("Nhap so phan tu: ");
+ 	scanf("%f", &n);
+	NhapMang(A, n);	
+	XuatMang(A, n);
+ 	soduongMang(A, n);
+ 	printf("\nsap xep mang: ");
+    SapXepMang(A, n);
+ 	XuatMang(A, n);
+ 
+ }
+ void NhapMang(float A[100], float n)
+ {
+     for(int i=0; i<n; i++)
+	 {
+	 	printf("Nhap A[%.0f]=  ",i);
+    	scanf("%f", & A[i]);
+ 	 }
+ }
+ void XuatMang(float A[100], float n)
+ {
+ 	 printf("\n");
+     for(int i=0; i<n; i++)
+	 {
+	 	printf("\nA[%d]= %.2f",i,A[i]); 	
+ 	 }
+ }
+ void soduongMang(float A[100], float n)
+ {
+ 	 float Min = A[0];
+ 	 for(int i=0; i<n; i++)
+	 {
+	   if((A[i]>0)&&(A[i]<Min))
+	      Min = A[i];
+	 }
+	 printf("\n%.2f la so duong nho nhat!!",Min);
+ }
+ void SapXepMang(float A[], float n)
+ {
+  float t = 0;
+  float x = 0;	
+  for(int i=0; i<(n-1); i++)
+     for(int j=i+1; j<n; j++)      
+	     if(A[j]<A[i])	
+	     {	
+	     	int temp = A[i];
+	     	A[i] = A[j];
+	     	A[j] = temp;
+		 }
+ }
+//Bài 4(trang 3)_So hoan hao
+#include<stdio.h>
+
+int main(void)
+{
+	int n;
+	int t=0;
+	printf("Hay nhap n: ");
+	scanf("%d", &n);
+	for(int i=1; i<n; i++)
+	    if(n%i == 0)
+	    {
+	    	t = t + i;
+		}
+	     
+	if(t == n)
+	   printf("%d la so hoan hao!! ", n);
+	else
+	   printf("%d khong la so hoan hao!! ", n);
+	
+}
+
+
+//Bài 5(trang 4)_tính Exp
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{
+    int i, n;
+    float x, S, T;
+    long M;
+    printf("\nNhap x: ");
+    scanf("%f", &x);
+    do
+    {
+    printf("\nNhap n: ");
+    scanf("%d", &n);
+      if(n < 1)
+      {
+          printf("\n N phai >= 1. Xin nhap lai !");
+      }
+
+    }while(n < 1);
+
+    S = 1;
+    T = 1;
+    M = 1;
+    i = 1;
+
+    while(i <= n)
+    {
+        T = T * x;
+        M = M * i;
+        S = S + T/M;
+        i++;
+    }
+    printf("\nTong la %f", S);
+    getch();
+    return 0;
+}
+
+//Bài 2(trang 2)_tính s
+#include<stdio.h>
+#include<math.h>
+ int main(void)
+ {
+ 	int x;
+    float S;
+    printf("Nhap vao so X: ");
+    scanf("%d", &x);
+    S= 1 + x + pow(x,3)/3 + pow(x,5)/5; 
+    printf("Ket qua la:%.2f", S);
+ }
+ 
+
+ 
+
+
+
+
